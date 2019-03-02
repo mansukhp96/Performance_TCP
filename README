@@ -1,0 +1,23 @@
+﻿Distribution of Work:
+
+
+Dweep: 
+* Understanding TCL simulator and scripts 
+* Designed the overall Network Architecture
+* Attach TCP modules to specific nodes
+* Started understanding throughput, delay of TCP variants
+* Setup FTP Traffic Generator on TCP nodes
+
+
+Mansukh: 
+* Understanding TCL simulator and scripts 
+* Designed the overall Network Architecture
+* Attach UDP modules to specific nodes
+* Started with packet delay of TCP variants
+* Setup the CBR Traffic Generator on UDP nodes
+
+
+We have not yet discussed our methodology with a TA. 
+
+
+We have reached out to Soumitra to set up a time for discussing our methodology in the upcoming week.
