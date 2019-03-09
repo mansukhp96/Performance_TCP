@@ -10,7 +10,7 @@ set tcp_var2 [lindex $argv 1]
 set rate [lindex $argv 2]
 
 # Setting the trace file
-set all_trace [open ${var1}_${var2}_${rate}_output.out w]
+set all_trace [open ${tcp_var1}_${tcp_var2}_${rate}_output.out w]
 $s trace-all $all_trace
 
 # Final end procedure to send all the trace log into a trace file
@@ -43,6 +43,12 @@ set null [new Agent/Null]
 $s attach-agent $n3 $null
 $s connect $udp $null
 
+# Attaching CBR
+set cbr [new Application/Traffic/CBR]
+$cbr attach-agent $udp
+$cbr set type_ CBR
+$cbr set rate_ ${rate}mb
+
 # Adding a TCP sender module (Reno/NewReno/Vegas)
 if {$tcp_var1 eq "Reno" || $tcp_var1 eq "Vegas"} {
     set tcp1 [new Agent/TCP/$tcp_var1]
@@ -51,7 +57,7 @@ if {$tcp_var1 eq "Reno" || $tcp_var1 eq "Vegas"} {
 }
 
 # Direct traffic from n1 to sink at n4
-$tcp set class_ 1
+$tcp1 set class_ 1
 $s attach-agent $n1 $tcp1
 set sink1 [new Agent/TCPSink]
 $s attach-agent $n4 $sink1
@@ -71,9 +77,9 @@ $s connect $tcp2 $sink2
 
 # Setup an FTP traffic generator on TCP
 set ftp1 [new Application/FTP]
-$ftp attach-agent $tcp1
+$ftp1 attach-agent $tcp1
 set ftp2 [new Application/FTP]
-$ftp attach-agent $tcp2
+$ftp2 attach-agent $tcp2
 
 # Scheduling start and stop times
 $s at 0 "$cbr start"
