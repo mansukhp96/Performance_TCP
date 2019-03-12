@@ -7,7 +7,7 @@ set var [lindex $argv 0]
 set rate [lindex $argv 1]
 
 #Setting the trace file
-set all_trace [open experiment1.out w]
+set all_trace [open exp1_output/experiment1${var}_${rate}.out w]
 $s trace-all $all_trace
 
 #Final end procedure to send all the trace log into a trace file
@@ -54,7 +54,6 @@ if {$var eq "Tahoe"} {
 }
 
 #Direct traffic from n1 to sink at n4
-$tcp set class_ 1
 $s attach-agent $n1 $tcp
 set sink [new Agent/TCPSink]
 $s attach-agent $n4 $sink
