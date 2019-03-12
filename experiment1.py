@@ -97,7 +97,7 @@ for rate in range(1, 16):
                     num_packets += 1
 
         if num_packets == 0:
-            str_latency = '0'  # CHECK -- str latency
+            str_latency = '0' # CHECK -- str latency
         str_latency = str_latency + '\t' + str(total_duration / num_packets * 1000)
 
     f1.write("Rate: " + str(rate) + " Throughputs: " + str_throughput + '\n')
