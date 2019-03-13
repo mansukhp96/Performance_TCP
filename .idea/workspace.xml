@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PerfTCP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PerfTCP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment1.tcl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment2.tcl" beforeDir="false" />
-    </list>
+    <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="-Changed CBR range 1 - 12&#10;-Structured all the files" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +14,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="241">
+              <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -40,6 +33,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="posix &lt;posixnnja@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -51,6 +49,7 @@
         <option value="$PROJECT_DIR$/droprate.dat" />
         <option value="$PROJECT_DIR$/latency.dat" />
         <option value="$PROJECT_DIR$/throughput.dat" />
+        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
       </list>
     </option>
   </component>
@@ -112,6 +111,14 @@
       <updated>1552170758214</updated>
       <workItem from="1552170787603" duration="9957000" />
     </task>
+    <task id="LOCAL-00001" summary="-Changed CBR range 1 - 12&#10;-Structured all the files">
+      <created>1552439526542</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1552439526542</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -121,7 +128,7 @@
     <frame x="0" y="25" width="1280" height="654" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17820206" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17820206" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -144,6 +151,10 @@
       <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-Changed CBR range 1 - 12&#10;-Structured all the files" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Changed CBR range 1 - 12&#10;-Structured all the files" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/experiment1.tcl">
@@ -189,8 +200,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        <state relative-caret-position="241">
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="36" selection-end-line="63" selection-end-column="36" />
         </state>
       </provider>
     </entry>
