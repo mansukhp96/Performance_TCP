@@ -2,8 +2,6 @@
 
 import os
 
-TCP = ['Tahoe', 'Reno', 'Newreno', 'Vegas']
-
 
 class C:
     def __init__(self, line):
@@ -18,22 +16,22 @@ class C:
 
 
 # Generate trace file
-for var in TCP:
-    for rate in range(1, 13):
-        os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment1.tcl " + var + " " + str(rate))
+for tcp_var in ['Tahoe', 'Reno', 'Newreno', 'Vegas']:
+    for cbr_rate in range(1, 13):
+        os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment1.tcl " + tcp_var + " " + str(cbr_rate))
 
 f1 = open('exp1_data/1_throughput.dat', 'w')
 f2 = open('exp1_data/1_droprate.dat', 'w')
 f3 = open('exp1_data/1_latency.dat', 'w')
 
-for rate in range(1, 13):
+for cbr_rate in range(1, 13):
     str_throughput = ''
     str_droprate = ''
     str_latency = ''
 
-    for var in TCP:
+    for tcp_var in ['Tahoe', 'Reno', 'Newreno', 'Vegas']:
         # Open the throughput files for TCP variants and rates and calculate the throughput.
-        filename = "exp1_output/experiment1_" + var + "_" + str(rate) + ".out"
+        filename = "exp1_output/experiment1_" + tcp_var + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
@@ -41,29 +39,29 @@ for rate in range(1, 13):
         end_time = 0.0
         recvdSize = 0
         for line in lines:
-            cur = C(line)
-            if cur.pkt_type in ["tcp", "ack"]:
-                if cur.event == "+" and cur.from_node == "0":
-                    if cur.time < start_time:
-                        start_time = cur.time
-                if cur.event == "r":
-                    recvdSize += cur.pkt_size * 8
-                    end_time = cur.time
+            entry = C(line)
+            if entry.pkt_type in ['tcp', 'ack']:
+                if entry.event == "+" and entry.from_node == "0":
+                    if entry.time < start_time:
+                        start_time = entry.time
+                if entry.event == "r":
+                    recvdSize += entry.pkt_size * 8
+                    end_time = entry.time
         str_throughput = str_throughput + '\t' + str(recvdSize / (end_time - start_time) / (1024 * 1024))
 
         # Open the droprate files for TCP Variants and rates and calculate the droprate.
-        filename = "exp1_output/experiment1_" + var + "_" + str(rate) + ".out"
+        filename = "exp1_output/experiment1_" + tcp_var + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
         sendNum = recvdNum = 0
         for line in lines:
-            cur = C(line)
+            entry = C(line)
             # Packet type is tcp and it's acks within which we need to count sent - received / sent
-            if cur.pkt_type in ["tcp", "ack"]:
-                if cur.event == "+":
+            if entry.pkt_type in ["tcp", "ack"]:
+                if entry.event == "+":
                     sendNum += 1
-                if cur.event == "r":
+                if entry.event == "r":
                     recvdNum += 1
         if sendNum == 0:
             str_droprate = '0'
@@ -71,7 +69,7 @@ for rate in range(1, 13):
             str_droprate = str_droprate + '\t' + str(float(sendNum - recvdNum) / float(sendNum))
 
         # Open the latency files for TCP Variants and rates and calculate the delay.
-        filename = "exp1_output/experiment1_" + var + "_" + str(rate) + ".out"
+        filename = "exp1_output/experiment1_" + tcp_var + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
@@ -101,9 +99,9 @@ for rate in range(1, 13):
             str_latency = '0'  # CHECK -- str latency
         str_latency = str_latency + '\t' + str(total_duration / num_packets * 1000)
 
-    f1.write("Rate: " + str(rate) + " Throughputs: " + str_throughput + '\n')
-    f2.write("Rate: " + str(rate) + " Droprates: " + str_droprate + '\n')
-    f3.write("Rate: " + str(rate) + " Latencies: " + str_latency + '\n')
+    f1.write("Rate: " + str(cbr_rate) + " Throughputs: " + str_throughput + '\n')
+    f2.write("Rate: " + str(cbr_rate) + " Droprates: " + str_droprate + '\n')
+    f3.write("Rate: " + str(cbr_rate) + " Latencies: " + str_latency + '\n')
 
 f1.close()
 f2.close()
