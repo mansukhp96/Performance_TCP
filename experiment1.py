@@ -74,32 +74,36 @@ for rate in range(1, 16):
         f = open(filename)
         lines = f.readlines()
         f.close()
-        start_time = {}
-        end_time = {}
+        start_dict = {}
+        end_dict = {}
         total_duration = 0.0
-        total_packet = 0
+        num_packets = 0
+
         for line in lines:
-            cur = C(line)
-            if cur.pkt_type in ["tcp", "ack"]:
-                if cur.event == "+" and cur.from_node == "0":
-                    start_time.update({cur.seq_num: cur.time})
-                if cur.event == "r" and cur.to_node == "0":
-                    end_time.update({cur.seq_num: cur.time})
-        packets = {x for x in start_time.viewkeys() if x in end_time.viewkeys()}
-        for i in packets:
-            start = start_time[i]
-            end = end_time[i]
-            duration = end - start
-            if duration > 0:
-                total_duration += duration
-                total_packet += 1
-        if total_packet == 0:
-            str_latency = '0'
-        str_latency = str_latency + '\t' + str(total_duration / total_packet * 1000)
+            entry = C(line)
+            if entry.pkt_type in ["tcp", "ack"]:
+                if entry.from_node == "0" and entry.event == "+":
+                    # tracking start time of all packets originating from node 0 that are queueing
+                    start_dict[entry.seq_num] = entry.time
+                elif entry.to_node == "0" and entry.event == "r":
+                    # tracking end time of all packets returning ACKs at node 0
+                    end_dict[entry.seq_num] = entry.time
+
+        for key in start_dict:
+            if key in end_dict.keys():
+                period = end_dict[key] - start_dict[key]
+                if period > 0:
+                    total_duration += period
+                    num_packets += 1
+
+        if num_packets == 0:
+            str_latency = '0'  # CHECK -- str latency
+        str_latency = str_latency + '\t' + str(total_duration / num_packets * 1000)
 
     f1.write("Rate: " + str(rate) + " Throughputs: " + str_throughput + '\n')
     f2.write("Rate: " + str(rate) + " Droprates: " + str_droprate + '\n')
     f3.write("Rate: " + str(rate) + " Latencies: " + str_latency + '\n')
+
 f1.close()
 f2.close()
 f3.close()
