@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="" />
+    <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/experiment1.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/experiment1.py" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,17 +17,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+            <state relative-caret-position="1590">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/experiment2/experiment2.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+            <state relative-caret-position="315">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -38,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
@@ -50,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
+            <state relative-caret-position="515">
               <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
             </state>
           </provider>
@@ -70,6 +73,13 @@
       <find>0</find>
       <find>var</find>
       <find>rate</find>
+      <find>event</find>
+      <find>pkt_type</find>
+      <find>pkt_size</find>
+      <find>seq_num</find>
+      <find>str_throughput</find>
+      <find>str_droprate</find>
+      <find>str_latency</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -89,10 +99,10 @@
         <option value="$PROJECT_DIR$/droprate.dat" />
         <option value="$PROJECT_DIR$/latency.dat" />
         <option value="$PROJECT_DIR$/throughput.dat" />
-        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
         <option value="$PROJECT_DIR$/experiment1/experiment1.tcl" />
         <option value="$PROJECT_DIR$/experiment3/experiment3.tcl" />
         <option value="$PROJECT_DIR$/experiment3/experiment3.py" />
+        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
       </list>
     </option>
   </component>
@@ -108,7 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,6 +144,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -206,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552484376629</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="-Added missing experiment3.tcl!">
+      <created>1552484475138</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1552484475139</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -246,7 +263,8 @@
     <MESSAGE value="-Removed duplicate experiment2.tcl" />
     <MESSAGE value="-Added experiment 3 tcl&#10;-Experiment 3 working tcl" />
     <MESSAGE value="-Modified experiment3.tcl for success message&#10;-Added experiment3.tcl folder structure&#10;-Added experiment3.py for experiment3&#10;-Need to vary throughput and latency over time" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Modified experiment3.tcl for success message&#10;-Added experiment3.tcl folder structure&#10;-Added experiment3.py for experiment3&#10;-Need to vary throughput and latency over time" />
+    <MESSAGE value="-Added missing experiment3.tcl!" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added missing experiment3.tcl!" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/experiment1.tcl" />
@@ -255,13 +273,6 @@
     <entry file="file://$PROJECT_DIR$/throughput.dat" />
     <entry file="file://$PROJECT_DIR$/experiment1.py" />
     <entry file="file://$PROJECT_DIR$/experiment2.tcl" />
-    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -269,24 +280,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
+        <state relative-caret-position="515">
           <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiment2/experiment2.tcl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="15" lean-forward="true" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        <state relative-caret-position="315">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
         </state>
       </provider>
     </entry>
