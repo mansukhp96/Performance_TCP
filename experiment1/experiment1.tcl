@@ -7,7 +7,7 @@ set var [lindex $argv 0]
 set rate [lindex $argv 1]
 
 #Setting the trace file
-set all_trace [open exp1_output/experiment1${var}_${rate}.out w]
+set all_trace [open exp1_output/experiment1_${var}_${rate}.out w]
 $s trace-all $all_trace
 
 #Final end procedure to send all the trace log into a trace file
@@ -15,6 +15,7 @@ proc flush {} {
     global s nam_trace all_trace
     $s flush-trace
     close $all_trace
+    puts "Success!!!!"
     exit
 }
 
@@ -74,3 +75,4 @@ $s at 6 "flush"
 
 #Run the simulation
 $s run
+puts "Success!!"
