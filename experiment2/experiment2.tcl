@@ -10,7 +10,7 @@ set tcp_var2 [lindex $argv 1]
 set rate [lindex $argv 2]
 
 # Setting the trace file
-set all_trace [open ${tcp_var1}_${tcp_var2}_${rate}_output.out w]
+set all_trace [open exp2_output/experiment2_${tcp_var1}_${tcp_var2}_${rate}.out w]
 $s trace-all $all_trace
 
 # Final end procedure to send all the trace log into a trace file
@@ -18,6 +18,7 @@ proc flush {} {
     global s nam_trace all_trace
     $s flush-trace
     close $all_trace
+    puts "Success!!!!"
     exit
 }
 
@@ -94,3 +95,4 @@ $s at 6 "flush"
 
 # Run the simulation
 $s run
+puts "Success!!!!"
