@@ -1,0 +1,14 @@
+time: 0 CBR: 0 TCP: 1
+time: 1 CBR: 0 TCP: 4
+time: 2 CBR: 0 TCP: 12
+time: 3 CBR: 7 TCP: 14
+time: 4 CBR: 14 TCP: 18
+time: 5 CBR: 22 TCP: 20
+time: 6 CBR: 30 TCP: 24
+time: 7 CBR: 37 TCP: 27
+time: 8 CBR: 45 TCP: 31
+time: 9 CBR: 52 TCP: 38
+time: 10 CBR: 59 TCP: 46
+time: 11 CBR: 66 TCP: 53
+time: 12 CBR: 73 TCP: 61
+time: 13 CBR: 80 TCP: 68
