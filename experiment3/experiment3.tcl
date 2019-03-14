@@ -78,11 +78,11 @@ $ftp attach-agent $tcp
 # Scheduling start and stop times
 $s at 0 "$ftp start"
 $s at 3 "$cbr start"
-$s at 6 "$ftp stop"
-$s at 6 "$cbr stop"
+$s at 15 "$ftp stop"
+$s at 15 "$cbr stop"
 
 # Flush after end time to race file
-$s at 6 "flush"
+$s at 15 "flush"
 
 # Run the simulation
 $s run

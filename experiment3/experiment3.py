@@ -20,16 +20,11 @@ for tcp_var in ['Reno', 'SACK']:
     for que_alg in ['DropTail', 'RED']:
         os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + tcp_var + " " + str(que_alg))
 
-f1 = open('exp3_data/3_throughput.dat', 'w')
-f3 = open('exp3_data/3_latency.dat', 'w')
-
 for que_alg in ['DropTail', 'RED']:
-    str_throughput = ''
-    str_latency = ''
 
     for tcp_var in ['Reno', 'SACK']:
         # Open the throughput files for TCP variants and rates and calculate the throughput.
-        filename = "exp3_output/experiment3_" + tcp_var + "_" + str(que_alg) + ".out"
+        filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
         tcl_file = open(filename)
         lines = tcl_file.readlines()
         tcl_file.close()
@@ -38,7 +33,7 @@ for que_alg in ['DropTail', 'RED']:
         tcp_recvdPacketSize = 0
         cbr_recvdPacketSize = 0
         # TODO -- set the appropriate file path
-        throughput = open('TODO')
+        throughput = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_throughput.dat', 'w')
         for line in lines:
             entry = C(line)
             # tracking the TCP flow to monitor total packets received
@@ -56,7 +51,8 @@ for que_alg in ['DropTail', 'RED']:
                 tcp_throughput = tcp_recvdPacketSize / (1024 * 1024)
                 cbr_throughput = cbr_recvdPacketSize / (1024 * 1024)
                 # TODO -- write into file with some format
-                throughput.write("TODO")
+                throughput.write(
+                    "time: " + str(log_period) + " CBR: " + str(cbr_throughput) + " TCP: " + str(tcp_throughput) + '\n')
                 log_period += 1
                 # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
 
@@ -64,14 +60,14 @@ for que_alg in ['DropTail', 'RED']:
         # throughput END
 
         # Open the latency files for TCP Variants and rates and calculate the delay.
-        filename = "exp3_output/experiment3_" + tcp_var + "_" + str(que_alg) + ".out"
+        filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
         tcl_file = open(filename)
         lines = tcl_file.readlines()
         tcl_file.close()
         # Start here for latency exp3
         log_period = 0
         # TODO -- set the appropriate file path
-        latency = open('TODO')
+        latency = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_latency.dat', 'w')
 
         tcp_start_dict = {}
         tcp_end_dict = {}
@@ -134,13 +130,13 @@ for que_alg in ['DropTail', 'RED']:
                     cbr_delay = cbr_total_duration / cbr_num_packets * 1000
 
                 # TODO -- write into file with some format
-                latency.write("TODO")
+                latency.write("time: " + str(log_period) + "CBR: " + str(cbr_delay) + "TCP: " + str(tcp_delay) + '\n')
                 # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
 
         latency.close()
 
-    f1.write("Algorithm: " + str(que_alg) + " Throughputs: " + str_throughput + '\n')
-    f3.write("Algorithm: " + str(que_alg) + " Latencies: " + str_latency + '\n')
+    # f1.write("Algorithm: " + str(que_alg) + " Throughputs: " + str_throughput + '\n')
+    # f3.write("Algorithm: " + str(que_alg) + " Latencies: " + str_latency + '\n')
 
-f1.close()
-f3.close()
+# f1.close()
+# f3.close()
