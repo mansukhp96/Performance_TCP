@@ -20,6 +20,8 @@ for tcp_var in ['Reno', 'SACK']:
     for que_alg in ['DropTail', 'RED']:
         os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + tcp_var + " " + str(que_alg))
 
+# TODO -- shouldn't the opening and closing of throughput and latency files be outside the for loop?
+
 for que_alg in ['DropTail', 'RED']:
 
     for tcp_var in ['Reno', 'SACK']:
@@ -95,10 +97,10 @@ for que_alg in ['DropTail', 'RED']:
             if entry.pkt_type == "cbr":
                 if entry.from_node == "4" and entry.event == "+":
                     # tracking start time of all packets (CBR traffic) originating from node 5 that are queueing
-                    tcp_start_dict[entry.seq_num] = entry.time
+                    cbr_start_dict[entry.seq_num] = entry.time
                 elif entry.to_node == "5" and entry.event == "r":
                     # tracking end time of all packets (CBR traffic) received at node 6
-                    tcp_end_dict[entry.seq_num] = entry.time
+                    cbr_end_dict[entry.seq_num] = entry.time
 
             # using log_period to only write data to the latency file after an interval of 1 sec
             if entry.time - log_period > 1:
@@ -130,13 +132,16 @@ for que_alg in ['DropTail', 'RED']:
                     cbr_delay = cbr_total_duration / cbr_num_packets * 1000
 
                 # TODO -- write into file with some format
-                latency.write("time: " + str(log_period) + "CBR: " + str(cbr_delay) + "TCP: " + str(tcp_delay) + '\n')
+                latency.write("time: " + str(log_period) + " CBR: " + str(cbr_delay) + " TCP: " + str(tcp_delay) + '\n')
                 # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
+                log_period += 1
+                tcp_start_dict = {}
+                tcp_end_dict = {}
+                tcp_total_duration = 0.0
+                tcp_num_packets = 0
+                cbr_start_dict = {}
+                cbr_end_dict = {}
+                cbr_total_duration = 0.0
+                cbr_num_packets = 0
 
         latency.close()
-
-    # f1.write("Algorithm: " + str(que_alg) + " Throughputs: " + str_throughput + '\n')
-    # f3.write("Algorithm: " + str(que_alg) + " Latencies: " + str_latency + '\n')
-
-# f1.close()
-# f3.close()
