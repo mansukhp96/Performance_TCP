@@ -43,6 +43,7 @@ for cbr_rate in range(1, 13):
         recvdSize = 0
         for line in lines:
             entry = C(line)
+            # Packet type should be tcp since we are calculating the throughput for TCP variants.
             if entry.packet_type in ['tcp', 'ack']:
                 # Calculate period of time to send packets from node 1.
                 if entry.event_type == "+" and entry.from_node == "0":
@@ -90,6 +91,7 @@ for cbr_rate in range(1, 13):
 
         for line in lines:
             entry = C(line)
+            # Calculate the latency
             if entry.packet_type in ["tcp", "ack"]:
                 if entry.from_node == "0" and entry.event_type == "+":
                     # tracking start time of all packets originating from node 0 that are queueing
@@ -110,6 +112,7 @@ for cbr_rate in range(1, 13):
         # Final latency to be written into file.
         latency = latency + '\t' + str(total_duration / num_packets * 1000)
 
+    # Writing into the files finally to be used for generating graphs.
     f1.write("Rate: " + str(cbr_rate) + " Throughputs: " + throughput + '\n')
     f2.write("Rate: " + str(cbr_rate) + " Droprates: " + droprate + '\n')
     f3.write("Rate: " + str(cbr_rate) + " Latencies: " + latency + '\n')

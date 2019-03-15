@@ -3,7 +3,8 @@
 import os
 
 
-class Record:
+# Getting all the data from the trace file into variables.
+class C:
     def __init__(self, line):
         contents = line.split()
         self.event_type = contents[0]
@@ -24,6 +25,7 @@ for var in ['Reno&Reno', 'Newreno&Reno', 'Vegas&Vegas', 'Newreno&Vegas']:
             "/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment2.tcl " + TCP_vars[0] + " " + TCP_vars[
                 1] + " " + str(cbr_rate))
 
+# Opening all the data files to be used for generating graphs.
 f1 = open('exp2_data/exp2_Reno&Reno_throughput.dat', 'w')
 f2 = open('exp2_data/exp2_Reno&Reno_droprate.dat', 'w')
 f3 = open('exp2_data/exp2_Reno&Reno_delay.dat', 'w')
@@ -37,27 +39,29 @@ f10 = open('exp2_data/exp2_Newreno&Vegas_throughput.dat', 'w')
 f11 = open('exp2_data/exp2_Newreno&Vegas_droprate.dat', 'w')
 f12 = open('exp2_data/exp2_Newreno&Vegas_delay.dat', 'w')
 
+# Varying CBR rate from 1 to 12 until bottleneck capacity.
 for cbr_rate in range(1, 13):
     for var in ['Reno&Reno', 'Newreno&Reno', 'Vegas&Vegas', 'Newreno&Vegas']:
-        # thrput
+
+        # Throughput of the two variants of TCP
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
-        # Set counters
+        # Initialise counts
         begin1 = begin2 = 10.0
         end1 = end2 = 0.0
         received1 = received2 = 0
         for line in lines:
-            entry = Record(line)
-            if entry.flow_id == "1":  # TCP stream from 1 to 4
+            entry = C(line)
+            if entry.flow_id == "1":  # TCP stream for first TCP variant
                 if entry.event_type == "+" and entry.from_node == "0":
                     if entry.time < begin1:
                         begin1 = entry.time
                 if entry.event_type == "r":
                     received1 += entry.packet_size * 8
                     end1 = entry.time
-            if entry.flow_id == "2":  # TCP stream from 5 to 6
+            if entry.flow_id == "2":  # TCP stream for second TCP variant
                 if entry.event_type == "+" and entry.from_node == "4":
                     if entry.time < begin2:
                         begin2 = entry.time
@@ -65,27 +69,27 @@ for cbr_rate in range(1, 13):
                     received2 += entry.packet_size * 8
                     end2 = entry.time
 
-                    # print('DEBUG:' + str(recvdSize) + ' ' + str(end_time) + ' ' + str(start_time))
+        # Throughputs of the two TCP variants.
         throughput1 = received1 / (end1 - begin1) / (1024 * 1024)
         throughput2 = received2 / (end2 - begin2) / (1024 * 1024)
 
-        # droprate
+        # Droprate of the two TCP variants for CBR rate from 1 to 12
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
-
+        # Initialise the counters.
         scount1 = rcount1 = 0
         scount2 = rcount2 = 0
 
         for line in lines:
-            entry = Record(line)
-            if entry.flow_id == "1":
+            entry = C(line)
+            if entry.flow_id == "1":  # First TCP variant
                 if entry.event_type == "+":
                     scount1 += 1
                 if entry.event_type == "r":
                     rcount1 += 1
-            if entry.flow_id == "2":
+            if entry.flow_id == "2":  # Second TCP variant
                 if entry.event_type == "+":
                     scount2 += 1
                 if entry.event_type == "r":
@@ -94,19 +98,22 @@ for cbr_rate in range(1, 13):
         if scount1 == 0:
             droprate1 = 0
         else:
+            # Droprate for first TCP variant
             droprate1 = float(scount1 - rcount1) / float(scount1)
 
         if scount2 == 0:
             droprate2 = 0
         else:
+            # Droprate for second TCP variant
             droprate2 = float(scount1 - rcount1) / float(scount1)
 
-        # latency
+        # Latency of the two TCP variants with varying CBR rate.
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
         tcl_file = open(filename)
         lines = tcl_file.readlines()
         tcl_file.close()
 
+        # Using dictionary to store the durations
         tcp1_start_dict = {}
         tcp1_end_dict = {}
         tcp1_total_duration = 0.0
@@ -118,8 +125,9 @@ for cbr_rate in range(1, 13):
         tcp2_num_packets = 0
 
         for line in lines:
-            entry = Record(line)
+            entry = C(line)
 
+            # latency calculation for first TCP variant
             if entry.flow_id == "1":
                 if entry.from_node == "0" and entry.event_type == "+":
                     # tracking start time of all packets originating from node 0 for the first TCP flow that are
@@ -128,7 +136,7 @@ for cbr_rate in range(1, 13):
                 elif entry.to_node == "0" and entry.event_type == "r":
                     # tracking end time of all packets returning ACKs at node 0 for the first TCP flow
                     tcp1_end_dict[entry.sequence_num] = entry.time
-
+            # latency calculation for second TCP variant
             if entry.flow_id == "2":
                 if entry.from_node == "4" and entry.event_type == "+":
                     # tracking start time of all packets originating from node 0 for the second TCP flow that are
@@ -162,6 +170,7 @@ for cbr_rate in range(1, 13):
         else:
             tcp2_delay = tcp2_total_duration / tcp2_num_packets * 1000
 
+        # Writing to final files based on the TCP combination compared.
         if var == 'Reno&Reno':
             f1.write("Rate: " + str(cbr_rate) + ' ' + str(throughput1) + ' ' + str(throughput2) + '\n')
             f2.write("Rate: " + str(cbr_rate) + ' ' + str(droprate1) + ' ' + str(droprate2) + '\n')

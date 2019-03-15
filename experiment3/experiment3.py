@@ -20,29 +20,20 @@ for tcp_var in ['Reno', 'SACK']:
     for que_alg in ['DropTail', 'RED']:
         os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + str(tcp_var) + " " + str(que_alg))
 
-# f1 = open("exp3_output/experiment3_Reno_Droptail_throughput.out")
-# f2 = open("exp3_output/experiment3_Reno_RED_throughput.out")
-# f3 = open("exp3_output/experiment3_SACK_Droptail_throughput.out")
-# f4 = open("exp3_output/experiment3_SACK_RED_throughput.out")
-# f5 = open("exp3_output/experiment3_Reno_DropTail_latency.out")
-# f6 = open("exp3_output/experiment3_Reno_RED_latency.out")
-# f7 = open("exp3_output/experiment3_SACK_DropTail_latency.out")
-# f8 = open("exp3_output/experiment3_SACK_RED_latency.out")
-
-# TODO -- shouldn't the opening and closing of throughput and latency files be outside the for loop?
-
+# Varying the queueing algorithms i.e., DropTail and RED
 for que_alg in ['DropTail', 'RED']:
+    # Varying the TCP variants i.e., Reno and SACK.
     for tcp_var in ['Reno', 'SACK']:
         # Open the throughput files for TCP variants and rates and calculate the throughput.
         filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
         tcl_file = open(filename)
         lines = tcl_file.readlines()
         tcl_file.close()
-        # Start here for throughput exp3
+        # Initialising the counters.
         log_period = 0
         tcp_recvdPacketSize = 0
         cbr_recvdPacketSize = 0
-        # TODO -- set the appropriate file path
+        # Opening the data file to be written into.
         throughput = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_throughput.dat', 'w')
         for line in lines:
             entry = C(line)
@@ -60,27 +51,27 @@ for que_alg in ['DropTail', 'RED']:
             if entry.time - log_period > 1:
                 tcp_throughput = tcp_recvdPacketSize / (1024 * 1024)
                 cbr_throughput = cbr_recvdPacketSize / (1024 * 1024)
-                # TODO -- write into file with some format
                 throughput.write(
                     "time: " + str(log_period) + " CBR: " + str(cbr_throughput) + " TCP: " + str(tcp_throughput) + '\n')
                 log_period += 1
-                # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
                 tcp_recvdPacketSize = 0
                 cbr_recvdPacketSize = 0
 
         throughput.close()
         # throughput END
 
-        # Droprate
+        # Droprate for the two TCP variants over RED and DropTail.
         filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
+        # Initializing the counters.
         log_period = 0
         sendNum = 0
         recvdNum = 0
         sendNum1 = 0
         recvdNum1 = 0
+        # Opening the droprate data file to be written into.
         dropratef = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_droprate.dat', 'w')
         for line in lines:
             entry = C(line)
@@ -125,9 +116,9 @@ for que_alg in ['DropTail', 'RED']:
         tcl_file = open(filename)
         lines = tcl_file.readlines()
         tcl_file.close()
-        # Start here for latency exp3
+        # Initializing the counters.
         log_period = 0
-        # TODO -- set the appropriate file path
+        # Opening the latency data file to be written into for generating graphs.
         latency = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_latency.dat', 'w')
 
         tcp_start_dict = {}
@@ -184,15 +175,11 @@ for que_alg in ['DropTail', 'RED']:
                     tcp_delay = 0
                 else:
                     tcp_delay = tcp_total_duration / tcp_num_packets * 1000
-
                 if cbr_num_packets == 0:
                     cbr_delay = 0
                 else:
                     cbr_delay = cbr_total_duration / cbr_num_packets * 1000
-
-                # TODO -- write into file with some format
                 latency.write("time: " + str(log_period) + " CBR: " + str(cbr_delay) + " TCP: " + str(tcp_delay) + '\n')
-                # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
                 log_period += 1
                 tcp_start_dict = {}
                 tcp_end_dict = {}

@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/experiment1.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/experiment1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment2/experiment2.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment2/experiment2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment3/experiment3.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment3/experiment3.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+            <state relative-caret-position="330">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -25,17 +28,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-420">
-              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+            <state relative-caret-position="270">
+              <caret line="18" column="8" lean-forward="true" selection-end-line="78" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment2/experiment2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state relative-caret-position="2580">
+              <caret line="172" column="71" selection-end-line="202" />
             </state>
           </provider>
         </entry>
@@ -43,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment2/experiment2.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+            <state relative-caret-position="-706">
+              <caret line="21" column="8" selection-end-line="98" />
             </state>
           </provider>
         </entry>
@@ -52,17 +55,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+            <state relative-caret-position="2715">
+              <caret line="181" column="120" selection-end-line="193" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="375">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -95,6 +98,7 @@
       <find>tcps</find>
       <find>rate</find>
       <find>record</find>
+      <find>Record</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,6 +108,11 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -118,8 +127,8 @@
         <option value="$PROJECT_DIR$/experiment1/Graphs plt/test.py" />
         <option value="$PROJECT_DIR$/experiment3/experiment3.tcl" />
         <option value="$PROJECT_DIR$/experiment2/latency2.py" />
-        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
         <option value="$PROJECT_DIR$/experiment2/experiment2.tcl" />
+        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
         <option value="$PROJECT_DIR$/experiment2/experiment2.py" />
         <option value="$PROJECT_DIR$/experiment3/experiment3.py" />
       </list>
@@ -137,7 +146,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,6 +184,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -345,7 +354,21 @@
       <option name="project" value="LOCAL" />
       <updated>1552676817686</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="-Added exp2 graphs">
+      <created>1552679327195</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1552679327195</updated>
+    </task>
+    <task id="LOCAL-00018" summary="-Added exp2 graphs missing added">
+      <created>1552679373462</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1552679373462</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -396,7 +419,9 @@
     <MESSAGE value="-Check droprate in exp3" />
     <MESSAGE value="-Experiment 2 throughput complete&#10;-Experiment 2 droprate complete&#10;-Experiment 2 latency needs a fix for zero values" />
     <MESSAGE value="-Experiment 2 and Experiment 1 completed fully&#10;-Expeiment 3 for loop in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Experiment 2 and Experiment 1 completed fully&#10;-Expeiment 3 for loop in progress" />
+    <MESSAGE value="-Added exp2 graphs" />
+    <MESSAGE value="-Added exp2 graphs missing added" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added exp2 graphs missing added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/experiment1.tcl" />
@@ -407,45 +432,45 @@
     <entry file="file://$PROJECT_DIR$/experiment2.tcl" />
     <entry file="file://$PROJECT_DIR$/experiment1/Graphs plt/test.py" />
     <entry file="file://$PROJECT_DIR$/experiment2/latency2.py" />
-    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
+    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment2/experiment2.tcl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state relative-caret-position="270">
+          <caret line="18" column="8" lean-forward="true" selection-end-line="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiment2/experiment2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+        <state relative-caret-position="2580">
+          <caret line="172" column="71" selection-end-line="202" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment2/experiment2.tcl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-706">
+          <caret line="21" column="8" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2715">
+          <caret line="181" column="120" selection-end-line="193" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
         </state>
       </provider>
     </entry>
