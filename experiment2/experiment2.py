@@ -129,7 +129,7 @@ for cbr_rate in range(1, 13):
                     # tracking start time of all packets originating from node 0 for the second TCP flow that are
                     # queueing
                     tcp2_start_dict[entry.sequence_num] = entry.time
-                elif entry.to_node == "0" and entry.event_type == "r":
+                elif entry.to_node == "4" and entry.event_type == "r":
                     # tracking end time of all packets returning ACKs at node 0 for the second TCP flow
                     tcp2_end_dict[entry.sequence_num] = entry.time
 
