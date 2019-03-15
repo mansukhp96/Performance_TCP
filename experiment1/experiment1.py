@@ -2,8 +2,6 @@
 
 import os
 
-import numpy
-
 
 # Getting all the data from the trace file into variables.
 class C:
@@ -20,7 +18,7 @@ class C:
 
 # Generate trace file
 for tcp_var in ['Tahoe', 'Reno', 'Newreno', 'Vegas']:
-    for cbr_rate in numpy.arange(1, 12, 0.5):
+    for cbr_rate in range(1, 13):
         os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment1.tcl " + tcp_var + " " + str(cbr_rate))
 
 # Data files used for graph generation.
@@ -29,7 +27,7 @@ f2 = open('exp1_data/1_droprate.dat', 'w')
 f3 = open('exp1_data/1_latency.dat', 'w')
 
 # CBR rate varying between 1 and 12mb until it reaches bottleneck capacity.
-for cbr_rate in numpy.arange(1, 12, 0.5):
+for cbr_rate in range(1, 13):
     throughput = ''
     droprate = ''
     latency = ''

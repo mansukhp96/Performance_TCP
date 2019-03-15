@@ -18,12 +18,11 @@ class C:
 # Generate trace file
 for tcp_var in ['Reno', 'SACK']:
     for que_alg in ['DropTail', 'RED']:
-        os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + tcp_var + " " + str(que_alg))
+        os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + str(tcp_var) + " " + str(que_alg))
 
 # TODO -- shouldn't the opening and closing of throughput and latency files be outside the for loop?
 
 for que_alg in ['DropTail', 'RED']:
-
     for tcp_var in ['Reno', 'SACK']:
         # Open the throughput files for TCP variants and rates and calculate the throughput.
         filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
@@ -57,9 +56,59 @@ for que_alg in ['DropTail', 'RED']:
                     "time: " + str(log_period) + " CBR: " + str(cbr_throughput) + " TCP: " + str(tcp_throughput) + '\n')
                 log_period += 1
                 # TODO -- generate graph for both conditions: resetting the recvdPacketSizes to zero and remaining unchanged
+                tcp_recvdPacketSize = 0
+                cbr_recvdPacketSize = 0
 
         throughput.close()
         # throughput END
+
+        # Droprate
+        filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"
+        f = open(filename)
+        lines = f.readlines()
+        f.close()
+        sendNum = 0
+        recvdNum = 0
+        sendNum1 = 0
+        recvdNum1 = 0
+        dropratef = open('exp3_data/3_' + str(tcp_var) + '_' + str(que_alg) + '_droprate.dat', 'w')
+        for line in lines:
+            entry = C(line)
+            # Packet type is tcp and it's acks within which we need to count sent - received / sent
+            if entry.pkt_type in ['tcp', 'ack']:
+                # Packets in the queue
+                if entry.event == "+":
+                    sendNum += 1
+                # Packets received
+                if entry.event == "r":
+                    recvdNum += 1
+            if entry.pkt_type == 'cbr':
+                # Packets in the queue
+                if entry.event == "+":
+                    sendNum1 += 1
+                # Packets received
+                if entry.event == "r":
+                    recvdNum1 += 1
+            if entry.time - log_period > 1:
+                if sendNum == 0:
+                    droprate = '0'
+                else:
+                    droprate = float(sendNum - recvdNum) / float(sendNum)
+                if sendNum1 == 0:
+                    droprate1 = '0'
+                else:
+                    droprate1 = float(sendNum1 - recvdNum1) / float(sendNum1)
+                dropratef.write(
+                    "time: " + str(log_period) + " CBR: " + str(droprate1) + " TCP: " + str(droprate) + '\n')
+                log_period += 1
+                sendNum = 0
+                recvdNum = 0
+                sendNum1 = 0
+                recvdNum1 = 0
+                droprate = 0
+                droprate1 = 0
+
+        dropratef.close()
 
         # Open the latency files for TCP Variants and rates and calculate the delay.
         filename = "exp3_output/experiment3_" + str(tcp_var) + "_" + str(que_alg) + ".out"

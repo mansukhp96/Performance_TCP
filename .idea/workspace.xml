@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c17bb214-8db4-4999-bb99-9066c4dbdbe8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/experiment2/latency2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/droprate.dat" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/Graphs 1/droprate.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/droprate_graph.gnu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/exp1_droprate.png" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/Graphs 1/exp1_droprate.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/exp1_throughput.png" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/Graphs 1/exp1_throughput.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/latency_graph.gnu" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/throughput.dat" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/Graphs 1/throughput.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment1/Graphs 1/throughput_graph.gnu" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment1/experiment1.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment1/experiment1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment2/experiment2.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment2/experiment2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment3/experiment3.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment3/experiment3.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="67" column="17" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="17" />
-              <folding>
-                <element signature="e#23#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="330">
+              <caret line="76" column="13" lean-forward="true" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -37,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment2/experiment2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="120" column="62" lean-forward="true" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
+            <state relative-caret-position="600">
+              <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -64,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="574">
+              <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -76,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            <state relative-caret-position="-559">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -128,10 +131,10 @@
         <option value="$PROJECT_DIR$/experiment1/Graphs plt/test.py" />
         <option value="$PROJECT_DIR$/experiment3/experiment3.tcl" />
         <option value="$PROJECT_DIR$/experiment2/experiment2.tcl" />
-        <option value="$PROJECT_DIR$/experiment3/experiment3.py" />
-        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
         <option value="$PROJECT_DIR$/experiment2/latency2.py" />
         <option value="$PROJECT_DIR$/experiment2/experiment2.py" />
+        <option value="$PROJECT_DIR$/experiment1/experiment1.py" />
+        <option value="$PROJECT_DIR$/experiment3/experiment3.py" />
       </list>
     </option>
   </component>
@@ -163,18 +166,18 @@
             <path>
               <item name="PerfTCP" type="b2602c69:ProjectViewProjectNode" />
               <item name="PerfTCP" type="462c0819:PsiDirectoryNode" />
+              <item name="experiment1" type="462c0819:PsiDirectoryNode" />
+              <item name="Graphs 1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PerfTCP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PerfTCP" type="462c0819:PsiDirectoryNode" />
               <item name="experiment2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PerfTCP" type="b2602c69:ProjectViewProjectNode" />
               <item name="PerfTCP" type="462c0819:PsiDirectoryNode" />
               <item name="experiment3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PerfTCP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PerfTCP" type="462c0819:PsiDirectoryNode" />
-              <item name="experiment3" type="462c0819:PsiDirectoryNode" />
-              <item name="Graphs 3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -321,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552605254125</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="-graphs exp3">
+      <created>1552619591224</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1552619591224</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -368,7 +378,8 @@
     <MESSAGE value="-added graphs and gnu files" />
     <MESSAGE value="-Fixed all experiment3 graphs.&#10;-Experiment 3 complete.&#10;-Experiment 2 in progress" />
     <MESSAGE value="-Fixed all experiment3 graphs.&#10;-Experiment 3 complete.&#10;-Need to add droprate for experiment 3 (last)&#10;-Experiment 2 in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Fixed all experiment3 graphs.&#10;-Experiment 3 complete.&#10;-Need to add droprate for experiment 3 (last)&#10;-Experiment 2 in progress" />
+    <MESSAGE value="-graphs exp3" />
+    <option name="LAST_COMMIT_MESSAGE" value="-graphs exp3" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/experiment1.tcl" />
@@ -378,24 +389,10 @@
     <entry file="file://$PROJECT_DIR$/experiment1.py" />
     <entry file="file://$PROJECT_DIR$/experiment2.tcl" />
     <entry file="file://$PROJECT_DIR$/experiment1/Graphs plt/test.py" />
-    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
+    <entry file="file://$PROJECT_DIR$/experiment2/latency2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -406,27 +403,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/experiment2/latency2.py">
+    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.tcl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="67" column="17" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="17" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-559">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiment2/experiment2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="120" column="62" lean-forward="true" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
+        <state relative-caret-position="600">
+          <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.tcl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment1/experiment1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="76" column="13" lean-forward="true" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment3/experiment3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
         </state>
       </provider>
     </entry>
