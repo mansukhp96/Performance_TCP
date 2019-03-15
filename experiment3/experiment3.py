@@ -67,6 +67,7 @@ for que_alg in ['DropTail', 'RED']:
         f = open(filename)
         lines = f.readlines()
         f.close()
+        log_period = 0
         sendNum = 0
         recvdNum = 0
         sendNum1 = 0
@@ -91,11 +92,11 @@ for que_alg in ['DropTail', 'RED']:
                     recvdNum1 += 1
             if entry.time - log_period > 1:
                 if sendNum == 0:
-                    droprate = '0'
+                    droprate = 0
                 else:
                     droprate = float(sendNum - recvdNum) / float(sendNum)
                 if sendNum1 == 0:
-                    droprate1 = '0'
+                    droprate1 = 0
                 else:
                     droprate1 = float(sendNum1 - recvdNum1) / float(sendNum1)
                 dropratef.write(
