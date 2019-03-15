@@ -2,164 +2,197 @@
 
 import os
 
+TCP_Variant2 = ['Reno_Reno', 'Newreno_Reno', 'Vegas_Vegas', 'Newreno_Vegas']
 
-# Getting all the data from the trace file into variables.
-class C:
+ns_command = "/course/cs4700f12/ns-allinone-2.35/bin/ns "
+
+
+class Record:
     def __init__(self, line):
         contents = line.split()
         self.event_type = contents[0]
         self.time = float(contents[1])
         self.from_node = contents[2]
         self.to_node = contents[3]
-        self.packet_type = contents[4]
-        self.packet_size = int(contents[5])
+        self.pkt_type = contents[4]
+        self.pkt_size = int(contents[5])
         self.flow_id = contents[7]
+        self.src_addr = contents[8]
+        self.dst_addr = contents[9]
         self.sequence_num = contents[10]
+        self.pkt_id = contents[11]
+
+
+def get_throughput(var, rate):
+    filename = "exp2_output/experiment2_" + str(var) + "_" + str(rate) + ".out"
+    f = open(filename)
+    lines = f.readlines()
+    f.close()
+    # Set counters
+    start_time1 = start_time2 = 10.0
+    end_time1 = end_time2 = 0.0
+    recvdSize1 = recvdSize2 = 0
+
+    for line in lines:
+        record = Record(line)
+        if record.flow_id == "1":  # TCP stream from 1 to 4
+            if record.event_type == "+" and record.from_node == "0":
+                if (record.time < start_time1):
+                    start_time1 = record.time
+            if record.event_type == "r":
+                recvdSize1 += record.pkt_size * 8
+                end_time1 = record.time
+        if record.flow_id == "2":  # TCP stream from 5 to 6
+            if record.event_type == "+" and record.from_node == "4":
+                if record.time < start_time2:
+                    start_time2 = record.time
+            if record.event_type == "r":
+                recvdSize2 += record.pkt_size * 8
+                end_time2 = record.time
+
+                # print('DEBUG:' + str(recvdSize) + ' ' + str(end_time) + ' ' + str(start_time))
+    th1 = recvdSize1 / (end_time1 - start_time1) / (1024 * 1024)
+    th2 = recvdSize2 / (end_time2 - start_time2) / (1024 * 1024)
+    return str(th1) + '\t' + str(th2)
+
+
+def get_drop_rate(var, rate):
+    filename = "exp2_output/experiment2_" + str(var) + "_" + str(rate) + ".out"
+    f = open(filename)
+    lines = f.readlines()
+    f.close()
+
+    sendNum1 = recvdNum1 = 0
+    sendNum2 = recvdNum2 = 0
+
+    for line in lines:
+        record = Record(line)
+        if record.flow_id == "1":
+            if record.event_type == "+":
+                sendNum1 += 1
+            if record.event_type == "r":
+                recvdNum1 += 1
+        if record.flow_id == "2":
+            if record.event_type == "+":
+                sendNum2 += 1
+            if record.event_type == "r":
+                recvdNum2 += 1
+
+    dr1 = 0 if sendNum1 == 0 else float(sendNum1 - recvdNum1) / float(sendNum1)
+    dr2 = 0 if sendNum2 == 0 else float(sendNum2 - recvdNum2) / float(sendNum2)
+    return str(dr1) + '\t' + str(dr2)
+
+
+def getLatency(var, rate):
+    filename = "exp2_output/experiment2_" + str(var) + "_" + str(rate) + ".out"
+    tcl_file = open(filename)
+    lines = tcl_file.readlines()
+    tcl_file.close()
+
+    tcp1_start_dict = {}
+    tcp1_end_dict = {}
+    tcp1_total_duration = 0.0
+    tcp1_num_packets = 0
+
+    tcp2_start_dict = {}
+    tcp2_end_dict = {}
+    tcp2_total_duration = 0.0
+    tcp2_num_packets = 0
+
+    for line in lines:
+        entry = Record(line)
+
+        if entry.flow_id == "1":
+            if entry.from_node == "0" and entry.event_type == "+":
+                # tracking start time of all packets originating from node 0 for the first TCP flow that are
+                # queueing
+                tcp1_start_dict[entry.sequence_num] = entry.time
+            elif entry.to_node == "0" and entry.event_type == "r":
+                # tracking end time of all packets returning ACKs at node 0 for the first TCP flow
+                tcp1_end_dict[entry.sequence_num] = entry.time
+
+        if entry.flow_id == "2":
+            if entry.from_node == "4" and entry.event_type == "+":
+                # tracking start time of all packets originating from node 0 for the second TCP flow that are
+                # queueing
+                tcp2_start_dict[entry.sequence_num] = entry.time
+            elif entry.to_node == "0" and entry.event_type == "r":
+                # tracking end time of all packets returning ACKs at node 0 for the second TCP flow
+                tcp2_end_dict[entry.sequence_num] = entry.time
+
+    for key in tcp1_start_dict:
+        if key in tcp1_end_dict.keys():
+            period = tcp1_end_dict[key] - tcp1_start_dict[key]
+            if period > 0:
+                tcp1_total_duration += period
+                tcp1_num_packets += 1
+
+    for key in tcp2_start_dict:
+        if key in tcp2_end_dict.keys():
+            period = tcp2_end_dict[key] - tcp2_start_dict[key]
+            if period > 0:
+                tcp2_total_duration += period
+                tcp2_num_packets += 1
+
+    if tcp1_num_packets == 0:
+        tcp1_delay = 0
+    else:
+        tcp1_delay = tcp1_total_duration / tcp1_num_packets * 1000
+
+    if tcp2_num_packets == 0:
+        tcp2_delay = 0
+    else:
+        tcp2_delay = tcp2_total_duration / tcp2_num_packets * 1000
+
+    return str(tcp1_delay) + '\t' + str(tcp2_delay)
 
 
 # Generate trace file
-for tcp_var in ['Reno_Reno', 'Newreno_Reno', 'Vegas_Vegas', 'Newreno_Vegas']:
-    tcp_vars = tcp_var.split('_')
-    for cbr_rate in range(1, 13):
-        os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment2.tcl " + tcp_vars[0] + " " + tcp_vars[
-            1] + " " + str(cbr_rate))
+for var in TCP_Variant2:
+    for rate in range(1, 11):
+        tcps = var.split('_')
+        os.system(ns_command + "experiment2.tcl " + tcps[0] + " " + tcps[1] + " " + str(rate))
 
-# # Data files used for graph generation.
-# f1 = open('exp2_data/2_Reno/Reno_throughput.dat', 'w')
-# f2 = open('exp2_data/2_Reno/Reno_droprate.dat', 'w')
-# f3 = open('exp2_data/2_Reno/Reno_latency.dat', 'w')
-# f4 = open('exp2_data/2_Newreno/Reno_throughput.dat', 'w')
-# f5 = open('exp2_data/2_Newreno/Reno_droprate.dat', 'w')
-# f6 = open('exp2_data/2_Newreno/Reno_latency.dat', 'w')
-# f7 = open('exp2_data/2_Vegas/Vegas_throughput.dat', 'w')
-# f8 = open('exp2_data/2_Vegas/Vegas_droprate.dat', 'w')
-# f9 = open('exp2_data/2_Vegas/Vegas_latency.dat', 'w')
-# f10 = open('exp2_data/2_Newreno/Vegas_throughput.dat', 'w')
-# f11 = open('exp2_data/2_Newreno/Vegas_droprate.dat', 'w')
-# f12 = open('exp2_data/2_Newreno/Vegas_latency.dat', 'w')
+f11 = open('exp2_data/exp2_Reno_Reno_throughput.dat', 'w')
+f12 = open('exp2_data/exp2_Reno_Reno_droprate.dat', 'w')
+f13 = open('exp2_data/exp2_Reno_Reno_delay.dat', 'w')
+f21 = open('exp2_data/exp2_Newreno_Reno_throughput.dat', 'w')
+f22 = open('exp2_data/exp2_Newreno_Reno_droprate.dat', 'w')
+f23 = open('exp2_data/exp2_Newreno_Reno_delay.dat', 'w')
+f31 = open('exp2_data/exp2_Vegas_Vegas_throughput.dat', 'w')
+f32 = open('exp2_data/exp2_Vegas_Vegas_droprate.dat', 'w')
+f33 = open('exp2_data/exp2_Vegas_Vegas_delay.dat', 'w')
+f41 = open('exp2_data/exp2_Newreno_Vegas_throughput.dat', 'w')
+f42 = open('exp2_data/exp2_Newreno_Vegas_droprate.dat', 'w')
+f43 = open('exp2_data/exp2_Newreno_Vegas_delay.dat', 'w')
+for rate in range(1, 13):
+    for var in TCP_Variant2:
+        if var == 'Reno_Reno':
+            f11.write(str(rate) + '\t' + get_throughput(var, rate) + '\n')
+            f12.write(str(rate) + '\t' + get_drop_rate(var, rate) + '\n')
+            f13.write(str(rate) + '\t' + getLatency(var, rate) + '\n')
+        if var == 'Newreno_Reno':
+            f21.write(str(rate) + '\t' + get_throughput(var, rate) + '\n')
+            f22.write(str(rate) + '\t' + get_drop_rate(var, rate) + '\n')
+            f23.write(str(rate) + '\t' + getLatency(var, rate) + '\n')
+        if var == 'Vegas_Vegas':
+            f31.write(str(rate) + '\t' + get_throughput(var, rate) + '\n')
+            f32.write(str(rate) + '\t' + get_drop_rate(var, rate) + '\n')
+            f33.write(str(rate) + '\t' + getLatency(var, rate) + '\n')
+        if var == 'Newreno_Vegas':
+            f41.write(str(rate) + '\t' + get_throughput(var, rate) + '\n')
+            f42.write(str(rate) + '\t' + get_drop_rate(var, rate) + '\n')
+            f43.write(str(rate) + '\t' + getLatency(var, rate) + '\n')
 
-# CBR rate varying between 1 and 12mb until it reaches bottleneck capacity.
-for cbr_rate in range(1, 13):
-    throughput1 = ''
-    droprate1 = ''
-    latency = ''
-    throughput2 = ''
-    droprate2 = ''
-    latency2 = ''
-
-    for tcp_var in ['Reno_Reno', 'Newreno_Reno', 'Vegas_Vegas', 'Newreno_Vegas']:
-        # Open the throughput files for TCP variants and rates and calculate the throughput.
-        filename = "exp2_output/experiment2_" + str(tcp_var) + "_" + str(cbr_rate) + ".out"
-        f = open(filename)
-        lines = f.readlines()
-        f.close()
-        start_time1 = start_time2 = 10.0
-        end_time1 = end_time2 = 0.0
-        recvdSize1 = recvdSize2 = 0
-        throughput_file = open('exp2_data/2_' + str(tcp_var) + '_throughput.dat', 'w')
-        for line in lines:
-            entry = C(line)
-            if entry.packet_type in ['tcp', 'ack'] and entry.flow_id == '1':
-                # Calculate period of time to send packets from node 1.
-                if entry.event_type == "+" and entry.from_node == "0":
-                    if entry.time < start_time1:
-                        start_time1 = entry.time
-                # Calculate size of packets in that period.
-                if entry.event_type == "r":
-                    recvdSize1 += entry.packet_size * 8
-                    end_time1 = entry.time
-            if entry.packet_type in ['tcp', 'ack'] and entry.flow_id == '2':
-                # Calculate period of time to send packets from node 4.
-                if entry.event_type == "+" and entry.from_node == "4":
-                    if entry.time < start_time2:
-                        start_time2 = entry.time
-                # Calculate size of packets in that period.
-                if entry.event_type == "r":
-                    recvdSize2 += entry.packet_size * 8
-                    end_time2 = entry.time
-        # Final throughput data to be written into file.
-        throughput1 = recvdSize1 / (end_time1 - start_time1) / (1024 * 1024)
-        throughput2 = recvdSize2 / (end_time2 - start_time2) / (1024 * 1024)
-    throughput_file.write(
-        str("Rate: " + str(cbr_rate) + tcp_vars[0]) + ": " + str(throughput1) + " " + str(tcp_vars[1]) + ": " + str(
-            throughput2) + '\n')
-    throughput_file.close()
-
-    # # Open the droprate files for TCP Variants and rates and calculate the droprate.
-    # filename = "exp2_output/experiment2_" + tcp_var + "_" + str(cbr_rate) + ".out"
-    # f = open(filename)
-    # lines = f.readlines()
-    # f.close()
-    # sendNum1 = recvdNum1 = 0
-    # sendNum2 = recvdNum2 = 0
-    # droprate_file = open('exp2_data/2_' + tcp_var + '_droprate.dat', 'w')
-    # for line in lines:
-    #     entry = C(line)
-    #     # Packet type is tcp and it's acks within which we need to count sent - received / sent
-    #     if entry.packet_type in ["tcp", "ack"] and entry.flow_id == '1':
-    #         # Packets in the queue
-    #         if entry.event_type == "+":
-    #             sendNum1 += 1
-    #         # Packets received
-    #         if entry.event_type == "r":
-    #             recvdNum1 += 1
-    #     if entry.packet_type in ["tcp", "ack"] and entry.flow_id == '2':
-    #         # Packets in the queue
-    #         if entry.event_type == "+":
-    #             sendNum2 += 1
-    #         # Packets received
-    #         if entry.event_type == "r":
-    #             recvdNum2 += 1
-    # if sendNum1 == 0:
-    #     droprate1 = '0'
-    # else:
-    #     # Final droprate to be written into file.
-    #     droprate1 = droprate1 + '\t' + str(float(sendNum1 - recvdNum1) / float(sendNum1))
-    # if sendNum2 == 0:
-    #     droprate2 = '0'
-    # else:
-    #     # Final droprate to be written into file.
-    #     droprate2 = droprate2 + '\t' + str(float(sendNum2 - recvdNum2) / float(sendNum2))
-    # droprate_file.write(
-    #     str("Rate: " + str(cbr_rate) + tcp_vars[0]) + ": " + str(droprate1) + " " + str(tcp_vars[1]) + ": " + str(
-    #         droprate2) + '\n')
-
-    # # Open the latency files for TCP Variants and rates and calculate the delay.
-    # filename = "exp1_output/experiment1_" + tcp_var + "_" + str(cbr_rate) + ".out"
-    # f = open(filename)
-    # lines = f.readlines()
-    # f.close()
-    # start_dict = {}
-    # end_dict = {}
-    # total_duration = 0.0
-    # num_packets = 0
-    #
-    # for line in lines:
-    #     entry = C(line)
-    #     if entry.packet_type in ["tcp", "ack"]:
-    #         if entry.from_node == "0" and entry.event_type == "+":
-    #             # tracking start time of all packets originating from node 0 that are queueing
-    #             start_dict[entry.sequence_num] = entry.time
-    #         elif entry.to_node == "0" and entry.event_type == "r":
-    #             # tracking end time of all packets returning ACKs at node 0
-    #             end_dict[entry.sequence_num] = entry.time
-    #
-    # for key in start_dict:
-    #     if key in end_dict.keys():
-    #         period = end_dict[key] - start_dict[key]
-    #         if period > 0:
-    #             total_duration += period
-    #             num_packets += 1
-    #
-    # if num_packets == 0:
-    #     latency = '0'
-    # # Final latency to be written into file.
-    # latency = latency + '\t' + str(total_duration / num_packets * 1000)
-
-    # f1.write("Rate: " + str(cbr_rate) + " Throughputs: " + throughput + '\n')
-    # f2.write("Rate: " + str(cbr_rate) + " Droprates: " + droprate + '\n')
-    # f3.write("Rate: " + str(cbr_rate) + " Latencies: " + latency + '\n')
-
-# f1.close()
-# f2.close()
-# f3.close()
+f11.close()
+f12.close()
+f13.close()
+f21.close()
+f22.close()
+f23.close()
+f31.close()
+f32.close()
+f33.close()
+f41.close()
+f42.close()
+f43.close()

@@ -51,7 +51,7 @@ for cbr_rate in numpy.arange(1, 12, 0.5):
                     if entry.time < start_time:
                         start_time = entry.time
                 # Calculate size of packets in that period.
-                if entry.event_type == "r":
+                if entry.event_type == "r" and entry.to_node == '3':
                     recvdSize += entry.packet_size * 8
                     end_time = entry.time
         # Final throughput data to be written into file.
@@ -119,4 +119,3 @@ for cbr_rate in numpy.arange(1, 12, 0.5):
 f1.close()
 f2.close()
 f3.close()
-
