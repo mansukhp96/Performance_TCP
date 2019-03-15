@@ -38,7 +38,7 @@ for cbr_rate in range(1, 13):
         f = open(filename)
         lines = f.readlines()
         f.close()
-        start_time = 10.0
+        start_time = 7.0
         end_time = 0.0
         recvdSize = 0
         for line in lines:
