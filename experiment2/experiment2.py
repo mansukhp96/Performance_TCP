@@ -39,37 +39,35 @@ f12 = open('exp2_data/exp2_Newreno&Vegas_delay.dat', 'w')
 
 for cbr_rate in range(1, 13):
     for var in ['Reno&Reno', 'Newreno&Reno', 'Vegas&Vegas', 'Newreno&Vegas']:
-
         # thrput
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
         f = open(filename)
         lines = f.readlines()
         f.close()
         # Set counters
-        start_time1 = start_time2 = 10.0
-        end_time1 = end_time2 = 0.0
-        recvdSize1 = recvdSize2 = 0
-
+        begin1 = begin2 = 10.0
+        end1 = end2 = 0.0
+        received1 = received2 = 0
         for line in lines:
             entry = Record(line)
             if entry.flow_id == "1":  # TCP stream from 1 to 4
                 if entry.event_type == "+" and entry.from_node == "0":
-                    if entry.time < start_time1:
-                        start_time1 = entry.time
+                    if entry.time < begin1:
+                        begin1 = entry.time
                 if entry.event_type == "r":
-                    recvdSize1 += entry.packet_size * 8
-                    end_time1 = entry.time
+                    received1 += entry.packet_size * 8
+                    end1 = entry.time
             if entry.flow_id == "2":  # TCP stream from 5 to 6
                 if entry.event_type == "+" and entry.from_node == "4":
-                    if entry.time < start_time2:
-                        start_time2 = entry.time
+                    if entry.time < begin2:
+                        begin2 = entry.time
                 if entry.event_type == "r":
-                    recvdSize2 += entry.packet_size * 8
-                    end_time2 = entry.time
+                    received2 += entry.packet_size * 8
+                    end2 = entry.time
 
                     # print('DEBUG:' + str(recvdSize) + ' ' + str(end_time) + ' ' + str(start_time))
-        th1 = recvdSize1 / (end_time1 - start_time1) / (1024 * 1024)
-        th2 = recvdSize2 / (end_time2 - start_time2) / (1024 * 1024)
+        throughput1 = received1 / (end1 - begin1) / (1024 * 1024)
+        throughput2 = received2 / (end2 - begin2) / (1024 * 1024)
 
         # droprate
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
@@ -77,24 +75,31 @@ for cbr_rate in range(1, 13):
         lines = f.readlines()
         f.close()
 
-        sendNum1 = recvdNum1 = 0
-        sendNum2 = recvdNum2 = 0
+        scount1 = rcount1 = 0
+        scount2 = rcount2 = 0
 
         for line in lines:
             entry = Record(line)
             if entry.flow_id == "1":
                 if entry.event_type == "+":
-                    sendNum1 += 1
+                    scount1 += 1
                 if entry.event_type == "r":
-                    recvdNum1 += 1
+                    rcount1 += 1
             if entry.flow_id == "2":
                 if entry.event_type == "+":
-                    sendNum2 += 1
+                    scount2 += 1
                 if entry.event_type == "r":
-                    recvdNum2 += 1
+                    rcount2 += 1
 
-        dr1 = 0 if sendNum1 == 0 else float(sendNum1 - recvdNum1) / float(sendNum1)
-        dr2 = 0 if sendNum2 == 0 else float(sendNum2 - recvdNum2) / float(sendNum2)
+        if scount1 == 0:
+            droprate1 = 0
+        else:
+            droprate1 = float(scount1 - rcount1) / float(scount1)
+
+        if scount2 == 0:
+            droprate2 = 0
+        else:
+            droprate2 = float(scount1 - rcount1) / float(scount1)
 
         # latency
         filename = "exp2_output/experiment2_" + str(var) + "_" + str(cbr_rate) + ".out"
@@ -129,7 +134,7 @@ for cbr_rate in range(1, 13):
                     # tracking start time of all packets originating from node 0 for the second TCP flow that are
                     # queueing
                     tcp2_start_dict[entry.sequence_num] = entry.time
-                elif entry.to_node == "0" and entry.event_type == "r":
+                elif entry.to_node == "4" and entry.event_type == "r":
                     # tracking end time of all packets returning ACKs at node 0 for the second TCP flow
                     tcp2_end_dict[entry.sequence_num] = entry.time
 
@@ -158,21 +163,21 @@ for cbr_rate in range(1, 13):
             tcp2_delay = tcp2_total_duration / tcp2_num_packets * 1000
 
         if var == 'Reno&Reno':
-            f1.write(str(cbr_rate) + ' ' + str(th1) + ' ' + str(th2) + '\n')
-            f2.write(str(cbr_rate) + ' ' + str(dr1) + ' ' + str(dr2) + '\n')
-            f3.write(str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
+            f1.write("Rate: " + str(cbr_rate) + ' ' + str(throughput1) + ' ' + str(throughput2) + '\n')
+            f2.write("Rate: " + str(cbr_rate) + ' ' + str(droprate1) + ' ' + str(droprate2) + '\n')
+            f3.write("Rate: " + str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
         elif var == 'Newreno&Reno':
-            f4.write(str(cbr_rate) + ' ' + str(th1) + ' ' + str(th2) + '\n')
-            f5.write(str(cbr_rate) + ' ' + str(dr1) + ' ' + str(dr2) + '\n')
-            f6.write(str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
+            f4.write("Rate: " + str(cbr_rate) + ' ' + str(throughput1) + ' ' + str(throughput2) + '\n')
+            f5.write("Rate: " + str(cbr_rate) + ' ' + str(droprate1) + ' ' + str(droprate2) + '\n')
+            f6.write("Rate: " + str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
         elif var == 'Vegas&Vegas':
-            f7.write(str(cbr_rate) + ' ' + str(th1) + ' ' + str(th2) + '\n')
-            f8.write(str(cbr_rate) + ' ' + str(dr1) + ' ' + str(dr2) + '\n')
-            f9.write(str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
+            f7.write("Rate: " + str(cbr_rate) + ' ' + str(throughput1) + ' ' + str(throughput2) + '\n')
+            f8.write("Rate: " + str(cbr_rate) + ' ' + str(droprate1) + ' ' + str(droprate2) + '\n')
+            f9.write("Rate: " + str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
         elif var == 'Newreno&Vegas':
-            f10.write(str(cbr_rate) + ' ' + str(th1) + ' ' + str(th2) + '\n')
-            f11.write(str(cbr_rate) + ' ' + str(dr1) + ' ' + str(dr2) + '\n')
-            f12.write(str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
+            f10.write("Rate: " + str(cbr_rate) + ' ' + str(throughput1) + ' ' + str(throughput2) + '\n')
+            f11.write("Rate: " + str(cbr_rate) + ' ' + str(droprate1) + ' ' + str(droprate2) + '\n')
+            f12.write("Rate: " + str(cbr_rate) + ' ' + str(tcp1_delay) + ' ' + str(tcp2_delay) + '\n')
 
 f1.close()
 f2.close()

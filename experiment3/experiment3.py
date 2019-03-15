@@ -20,6 +20,15 @@ for tcp_var in ['Reno', 'SACK']:
     for que_alg in ['DropTail', 'RED']:
         os.system("/course/cs4700f12/ns-allinone-2.35/bin/ns " + "experiment3.tcl " + str(tcp_var) + " " + str(que_alg))
 
+# f1 = open("exp3_output/experiment3_Reno_Droptail_throughput.out")
+# f2 = open("exp3_output/experiment3_Reno_RED_throughput.out")
+# f3 = open("exp3_output/experiment3_SACK_Droptail_throughput.out")
+# f4 = open("exp3_output/experiment3_SACK_RED_throughput.out")
+# f5 = open("exp3_output/experiment3_Reno_DropTail_latency.out")
+# f6 = open("exp3_output/experiment3_Reno_RED_latency.out")
+# f7 = open("exp3_output/experiment3_SACK_DropTail_latency.out")
+# f8 = open("exp3_output/experiment3_SACK_RED_latency.out")
+
 # TODO -- shouldn't the opening and closing of throughput and latency files be outside the for loop?
 
 for que_alg in ['DropTail', 'RED']:
