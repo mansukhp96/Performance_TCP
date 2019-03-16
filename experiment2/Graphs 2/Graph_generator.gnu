@@ -1,115 +1,103 @@
 set term png
 set output "exp2_NewReno_Reno_delay.png"
-set title "Experienmnet 2 NewReno-Reno Latency"
-set xlabel "CBR[Mbps]"
-set ylabel "Delay[ms]"
-set grid
+set title "Exp:2 Latency of NEWRENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "LATENCY(ms)"
 set key left
-plot 'Newreno_Reno_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Reno_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno'
+plot 'Newreno_Reno_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Reno_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_NewReno_Reno_droprate.png"
-set title "Experienmnet 2 NewReno-Reno Drop Rate"
-set xlabel "CBR[Mbps]"
-set ylabel "Drop Rate"
-set grid
+set title "Exp:2 Droprate of NEWRENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DROPRATE"
 set key left
-plot 'Newreno_Reno_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Reno_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno'
+plot 'Newreno_Reno_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Reno_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_NewReno_Reno_throughput.png"
-set title "Experienmnet 2 NewReno-Reno Throughtput"
-set xlabel "CBR[Mbps]"
-set ylabel "Throughput[Mbps]"
-set grid
-plot 'Newreno_Reno_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Reno_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno'
+set title "Exp:2 Throughtput of NEWRENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "THROUGHPUT(Mbps)"
+plot 'Newreno_Reno_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Reno_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_NewReno_Vegas_delay.png"
-set title "Experienmnet 2 NewReno-Vegas Latency"
-set xlabel "CBR[Mbps]"
-set ylabel "Delay[ms]"
-set grid
+set title "Exp:2 Latency of NEWRENO and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DELAY(ms)"
 set key left
-plot 'Newreno_Vegas_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Vegas_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas'
+plot 'Newreno_Vegas_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Vegas_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
 
 set term png
 set output "exp2_NewReno_Vegas_droprate.png"
-set title "Experienmnet 2 NewReno-Vegas Drop Rate"
-set xlabel "CBR[Mbps]"
-set ylabel "Drop Rate"
-set grid
+set title "Exp:2 Droprate of NEWRENO and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DROPRATE"
 set key left
-plot 'Newreno_Vegas_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Vegas_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas'
+plot 'Newreno_Vegas_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Vegas_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
 
 set term png
 set output "exp2_NewReno_Vegas_throughput.png"
-set title "Experienmnet 2 NewReno-Vegas Throughtput"
-set xlabel "CBR[Mbps]"
-set ylabel "Throughput[Mbps]"
-set grid
-plot 'Newreno_Vegas_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NewReno',\
- 'Newreno_Vegas_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas'
+set title "Exp:2 Throughtput of NEWRENO and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "THROUGHPUT(Mbps)"
+plot 'Newreno_Vegas_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'NEWRENO',\
+ 'Newreno_Vegas_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
 
 set term png
 set output "exp2_Reno_Reno_delay.png"
-set title "Experienmnet 2 Reno-Reno Latency"
-set xlabel "CBR[Mbps]"
-set ylabel "Delay[ms]"
-set grid
+set title "Exp:2 Latency of RENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DELAY(ms)"
 set key left
-plot 'Reno_Reno_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Reno[1-4]',\
- 'Reno_Reno_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno[5-6]'
+plot 'Reno_Reno_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'RENO',\
+ 'Reno_Reno_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_Reno_Reno_droprate.png"
-set title "Experienmnet 2 Reno-Reno Drop Rate"
-set xlabel "CBR[Mbps]"
-set ylabel "Drop Rate"
-set grid
+set title "Exp:2 Drorate of RENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DROPRATE"
 set key left
-plot 'Reno_Reno_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Reno[1-4]',\
- 'Reno_Reno_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno[5-6]'
+plot 'Reno_Reno_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'RENO',\
+ 'Reno_Reno_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_Reno_Reno_throughput.png"
-set title "Experienmnet 2 Reno-Reno Throughtput"
-set xlabel "CBR[Mbps]"
-set ylabel "Throughput[Mbps]"
-set grid
-plot 'Reno_Reno_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Reno[1-4]',\
- 'Reno_Reno_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Reno[5-6]'
+set title "Exp:2 Throughtput of RENO and RENO"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "THROUGHPUT(Mbps)"
+plot 'Reno_Reno_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'RENO',\
+ 'Reno_Reno_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'RENO'
 
 set term png
 set output "exp2_Vegas_Vegas_delay.png"
-set title "Experienmnet 2 Vegas-Vegas Latency"
-set xlabel "CBR[Mbps]"
-set ylabel "Delay[ms]"
-set grid
+set title "Exp:2 Latency of VEGAS and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DELAY(ms)"
 set key left
-plot 'Vegas_Vegas_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Vegas[1-4]',\
- 'Vegas_Vegas_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas[5-6]'
+plot 'Vegas_Vegas_delay.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'VEGAS',\
+ 'Vegas_Vegas_delay.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
 
 set term png
 set output "exp2_Vegas_Vegas_droprate.png"
-set title "Experienmnet 2 Vegas-Vegas Drop Rate"
-set xlabel "CBR[Mbps]"
-set ylabel "Drop Rate"
-set grid
+set title "Exp:2 Droprate of VEGAS and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "DROPRATE"
 set key left
-plot 'Vegas_Vegas_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Vegas[1-4]',\
- 'Vegas_Vegas_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas[5-6]'
+plot 'Vegas_Vegas_droprate.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'VEGAS',\
+ 'Vegas_Vegas_droprate.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
 
 set term png
 set output "exp2_Vegas_Vegas_throughput.png"
-set title "Experienmnet 2 Vegas-Vegas Throughtput"
-set xlabel "CBR[Mbps]"
-set ylabel "Throughput[Mbps]"
-set grid
-plot 'Vegas_Vegas_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'Vegas[1-4]',\
- 'Vegas_Vegas_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'Vegas[5-6]'
+set title "Exp:2 Throughtput of VEGAS and VEGAS"
+set xlabel "CBR RATE(Mbps)"
+set ylabel "THROUGHPUT(Mbps)"
+plot 'Vegas_Vegas_throughput.dat' using 2:3 with lp pt 2 lw 1 linecolor rgb "red" title 'VEGAS',\
+ 'Vegas_Vegas_throughput.dat' using 2:4 with lp pt 8 lw 1 lt 1 linecolor rgb "blue" title 'VEGAS'
